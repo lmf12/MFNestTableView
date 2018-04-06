@@ -14,6 +14,8 @@
 		E8E625C420773712004FDF78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8E625C220773712004FDF78 /* LaunchScreen.storyboard */; };
 		E8E625C720773712004FDF78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625C620773712004FDF78 /* main.m */; };
 		E8E625D02077380D004FDF78 /* MFNestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625CF2077380D004FDF78 /* MFNestTableView.m */; };
+		E8E625D4207750A5004FDF78 /* MFSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625D3207750A5004FDF78 /* MFSegmentView.m */; };
+		E8E625E220778AA5004FDF78 /* MFSegmentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625E120778AA5004FDF78 /* MFSegmentViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,10 @@
 		E8E625C620773712004FDF78 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8E625CE2077380D004FDF78 /* MFNestTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFNestTableView.h; sourceTree = "<group>"; };
 		E8E625CF2077380D004FDF78 /* MFNestTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFNestTableView.m; sourceTree = "<group>"; };
+		E8E625D2207750A5004FDF78 /* MFSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFSegmentView.h; sourceTree = "<group>"; };
+		E8E625D3207750A5004FDF78 /* MFSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFSegmentView.m; sourceTree = "<group>"; };
+		E8E625E020778AA5004FDF78 /* MFSegmentViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFSegmentViewCell.h; sourceTree = "<group>"; };
+		E8E625E120778AA5004FDF78 /* MFSegmentViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFSegmentViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,10 +84,22 @@
 		E8E625CD207737DA004FDF78 /* MFNestTableView */ = {
 			isa = PBXGroup;
 			children = (
+				E8E625D120775039004FDF78 /* MFSegmentView */,
 				E8E625CE2077380D004FDF78 /* MFNestTableView.h */,
 				E8E625CF2077380D004FDF78 /* MFNestTableView.m */,
 			);
 			path = MFNestTableView;
+			sourceTree = "<group>";
+		};
+		E8E625D120775039004FDF78 /* MFSegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				E8E625D2207750A5004FDF78 /* MFSegmentView.h */,
+				E8E625D3207750A5004FDF78 /* MFSegmentView.m */,
+				E8E625E020778AA5004FDF78 /* MFSegmentViewCell.h */,
+				E8E625E120778AA5004FDF78 /* MFSegmentViewCell.m */,
+			);
+			path = MFSegmentView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,10 +173,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8E625D4207750A5004FDF78 /* MFSegmentView.m in Sources */,
 				E8E625D02077380D004FDF78 /* MFNestTableView.m in Sources */,
 				E8E625BC20773712004FDF78 /* ViewController.m in Sources */,
 				E8E625C720773712004FDF78 /* main.m in Sources */,
 				E8E625B920773712004FDF78 /* AppDelegate.m in Sources */,
+				E8E625E220778AA5004FDF78 /* MFSegmentViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

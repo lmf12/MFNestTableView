@@ -27,7 +27,6 @@
 
 - (void)setSegmentView:(UIView *)segmentView {
     
-    segmentView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(segmentView.frame));
     _segmentView = segmentView;
     
     [self reloadData];

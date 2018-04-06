@@ -7,6 +7,7 @@
 //
 
 #import "MFNestTableView.h"
+#import "MFSegmentView.h"
 
 #import "ViewController.h"
 
@@ -14,7 +15,7 @@
 
 @property (nonatomic, strong) MFNestTableView *nestTableView;
 @property (nonatomic, strong) UIView *headerView;
-@property (nonatomic, strong) UIView *segmentView;
+@property (nonatomic, strong) MFSegmentView *segmentView;
 @property (nonatomic, strong) UIView *contentView;
 
 @end
@@ -52,8 +53,14 @@
 
 - (void)initSegmentView {
     
-    _segmentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetHeight(self.view.bounds), 50)];
-    _segmentView.backgroundColor = [UIColor yellowColor];
+    _segmentView = [[MFSegmentView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetHeight(self.view.bounds), 40)];
+    _segmentView.itemWidth = 60;
+    _segmentView.itemFont = [UIFont systemFontOfSize:15];
+    _segmentView.itemNormalColor = [UIColor greenColor];
+    _segmentView.itemSelectColor = [UIColor purpleColor];
+    _segmentView.bottomLineWidth = 40;
+    _segmentView.bottomLineHeight = 2;
+    _segmentView.itemList = @[@"综合", @"分类1", @"分类2", @"分类3", @"分类4", @"分类5", @"分类6"];
 }
 
 - (void)initContentView {
@@ -71,6 +78,7 @@
 
 - (void)nestTableViewContentWillEnableScroll:(MFNestTableView *)nestTableView {
     
+   
 }
 
 @end
