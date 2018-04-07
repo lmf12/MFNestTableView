@@ -151,4 +151,25 @@ static NSString * const kSegmentViewCellReuseIdentifier = @"MFSegmentViewCell";
     [self selectIndex:indexPath];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    if (self.segmentDelegate && [self.segmentDelegate respondsToSelector:@selector(segmentViewDidScroll:)]) {
+        [self.segmentDelegate segmentViewDidScroll:self];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    
+    if (self.segmentDelegate && [self.segmentDelegate respondsToSelector:@selector(segmentViewDidEndScrolling:)]) {
+        [self.segmentDelegate segmentViewDidEndScrolling:self];
+    }
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    
+    if (self.segmentDelegate && [self.segmentDelegate respondsToSelector:@selector(segmentViewDidEndScrolling:)]) {
+        [self.segmentDelegate segmentViewDidEndScrolling:self];
+    }
+}
+
 @end

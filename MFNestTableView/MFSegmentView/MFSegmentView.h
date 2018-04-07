@@ -13,6 +13,8 @@
 @protocol MFSegmentViewDelegate <NSObject>
 
 - (void)segmentView:(MFSegmentView *)segmentView didScrollToIndex:(NSUInteger)index;
+- (void)segmentViewDidScroll:(MFSegmentView *)segmentView;
+- (void)segmentViewDidEndScrolling:(MFSegmentView *)segmentView;
 
 @end
 
