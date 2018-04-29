@@ -15,6 +15,7 @@
 		E837389C2095863100DA212F /* MFPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E837389B2095863100DA212F /* MFPageView.m */; };
 		E837389F2095866C00DA212F /* MFSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E837389E2095866C00DA212F /* MFSegmentView.m */; };
 		E83738A52095CEAC00DA212F /* MFSegmentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E83738A42095CEAC00DA212F /* MFSegmentViewCell.m */; };
+		E85C5B992096400100E0B50D /* MFTransparentBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E85C5B982096400100E0B50D /* MFTransparentBarButtonItem.m */; };
 		E8E625B920773712004FDF78 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625B820773712004FDF78 /* AppDelegate.m */; };
 		E8E625BC20773712004FDF78 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625BB20773712004FDF78 /* ViewController.m */; };
 		E8E625BF20773712004FDF78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8E625BD20773712004FDF78 /* Main.storyboard */; };
@@ -38,6 +39,8 @@
 		E837389E2095866C00DA212F /* MFSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFSegmentView.m; sourceTree = "<group>"; };
 		E83738A32095CEAC00DA212F /* MFSegmentViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFSegmentViewCell.h; sourceTree = "<group>"; };
 		E83738A42095CEAC00DA212F /* MFSegmentViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFSegmentViewCell.m; sourceTree = "<group>"; };
+		E85C5B972096400100E0B50D /* MFTransparentBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFTransparentBarButtonItem.h; sourceTree = "<group>"; };
+		E85C5B982096400100E0B50D /* MFTransparentBarButtonItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFTransparentBarButtonItem.m; sourceTree = "<group>"; };
 		E8E625B420773712004FDF78 /* MFNestTableViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MFNestTableViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E625B720773712004FDF78 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E8E625B820773712004FDF78 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -75,6 +78,8 @@
 			children = (
 				E832F0F720960F0900C56855 /* MFTransparentNavigationBar.h */,
 				E832F0F820960F0900C56855 /* MFTransparentNavigationBar.m */,
+				E85C5B972096400100E0B50D /* MFTransparentBarButtonItem.h */,
+				E85C5B982096400100E0B50D /* MFTransparentBarButtonItem.m */,
 			);
 			path = MFTransparentNavigationBar;
 			sourceTree = SOURCE_ROOT;
@@ -229,6 +234,7 @@
 				E837389C2095863100DA212F /* MFPageView.m in Sources */,
 				E8E625B920773712004FDF78 /* AppDelegate.m in Sources */,
 				E83738A52095CEAC00DA212F /* MFSegmentViewCell.m in Sources */,
+				E85C5B992096400100E0B50D /* MFTransparentBarButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

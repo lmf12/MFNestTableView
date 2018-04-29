@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) MFSegmentView *segmentView;
 @property (nonatomic, strong) MFPageView *contentView;
+@property (nonatomic, strong) UIView *footerView;
 
 @property (nonatomic, strong) NSMutableArray <NSArray *> *dataSource;
 @property (nonatomic, strong) NSMutableArray <UIView *> *viewList;
@@ -35,6 +36,8 @@
     [self initDataSource];
     [self initLayout];
 }
+
+#pragma mark - private methods
 
 - (void)initDataSource {
     
@@ -83,14 +86,18 @@
 
 - (void)initLayout {
 
+    [self initNavigationBar];
+    
     [self initHeaderView];
     [self initSegmentView];
     [self initContentView];
+    [self initFooterView];
     
     _nestTableView = [[MFNestTableView alloc] initWithFrame:self.view.bounds];
     _nestTableView.headerView = _headerView;
     _nestTableView.segmentView = _segmentView;
     _nestTableView.contentView = _contentView;
+    _nestTableView.footerView = _footerView;
     _nestTableView.allowGestureEventPassViews = _viewList;
     _nestTableView.delegate = self;
     _nestTableView.dataSource = self;
@@ -132,6 +139,55 @@
     _contentView = [[MFPageView alloc] initWithFrame:self.view.bounds];
     _contentView.delegate = self;
     _contentView.dataSource = self;
+}
+
+- (void)initFooterView {
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 50)];
+    [button setBackgroundColor:[UIColor colorWithRed:244.0 / 255 green:67.0 / 255 blue:54.0 / 255 alpha:1]];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitle:@"隐藏底栏" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(onBtnBottomClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _footerView = button;
+}
+
+- (void)initNavigationBar {
+
+    MFTransparentBarButtonItem *item = [[MFTransparentBarButtonItem alloc] initWithFrame:CGRectMake(0, 0, 65, 44)];
+    self.navigationItem.rightBarButtonItem = item;
+    
+    UIButton *btnNormal = [[UIButton alloc] init];
+    [btnNormal setTitle:@"显示底栏" forState:UIControlStateNormal];
+    [btnNormal.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [btnNormal.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+    [btnNormal setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btnNormal setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    item.viewNormal = btnNormal;
+    [btnNormal addTarget:self action:@selector(onNavigationRightItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *btnSelected = [[UIButton alloc] init];
+    [btnSelected setTitle:@"显示底栏" forState:UIControlStateNormal];
+    [btnSelected.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [btnSelected setTitleColor:[UIColor colorWithRed:0.0 / 255 green:122.0 / 255 blue:255.0 / 255 alpha:1] forState:UIControlStateNormal];
+    item.viewSelected = btnSelected;
+    [btnSelected addTarget:self action:@selector(onNavigationRightItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *titleView = [[UILabel alloc] init];
+    titleView.text = @"Steam 夏日特卖";
+    titleView.font = [UIFont boldSystemFontOfSize:14];
+    titleView.hidden = YES;
+    self.navigationItem.titleView = titleView;
+}
+
+- (void)onBtnBottomClick:(UIButton *)button {
+    
+    [_nestTableView setFooterViewHidden:YES];
+}
+
+- (void)onNavigationRightItemClick:(UIButton *)button {
+
+    [_nestTableView setFooterViewHidden:NO];
 }
 
 #pragma mark - MFSegmentViewDelegate

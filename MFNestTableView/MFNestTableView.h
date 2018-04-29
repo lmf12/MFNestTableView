@@ -43,8 +43,6 @@
 
 - (CGFloat)heightForContainerCanScroll;
 
-- (void)nestTableViewDidScroll:(UIScrollView *)scrollView;
-
 - (void)setFooterViewHidden:(BOOL)hidden;
 
 - (void)setHeaderViewHeight:(CGFloat)height;

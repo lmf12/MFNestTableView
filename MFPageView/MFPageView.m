@@ -34,6 +34,8 @@ static NSString * const kMFPageViewReuseIdentifier = @"MFPageViewReuseIdentifier
     
     _collectionView.frame = [self bounds];
     _collectionViewLayout.itemSize = CGSizeMake(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+    
+    [_collectionView reloadData];
 }
 
 #pragma mark - public methods

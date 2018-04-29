@@ -73,6 +73,17 @@
     [_tableView reloadData];
 }
 
+- (void)setFooterView:(UIView *)footerView {
+    
+    if (_footerView == footerView) {
+        return;
+    }
+    _footerView = footerView;
+    
+    [self resizeContentHeight];
+    [_tableView reloadData];
+}
+
 - (void)setAllowGestureEventPassViews:(NSArray *)allowGestureEventPassViews {
     
     if (_tableView) {
@@ -162,7 +173,6 @@
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.canScroll = YES;
-    self.isFooterViewHidden = YES;
 }
 
 - (CGFloat)contentInsetTop {

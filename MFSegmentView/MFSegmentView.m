@@ -38,6 +38,8 @@ static NSString * const kMFSegmentViewReuseIdentifier = @"MFSegmentViewReuseIden
     
     _collectionView.frame = [self bounds];
     _collectionViewLayout.itemSize = CGSizeMake(_itemWidth, CGRectGetHeight(self.frame));
+    
+    [_collectionView reloadData];
 }
 
 #pragma mark - setter

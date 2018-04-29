@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MFTransparentBarButtonItem.h"
+
 @interface MFTransparentNavigationBar : UINavigationBar
 
 - (void)setBackgroundAlpha:(CGFloat)alpha;

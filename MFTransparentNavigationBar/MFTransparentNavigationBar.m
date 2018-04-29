@@ -56,6 +56,8 @@
     [self setShadowImage:shadowImage];
 }
 
+#pragma mark - public methods
+
 - (void)setBackgroundAlpha:(CGFloat)alpha
 {
     alpha = alpha > 1 ? 1 : alpha;
@@ -71,6 +73,25 @@
     }
     
     _bgView.backgroundColor = [UIColor colorWithWhite:1 alpha:alpha];
+    [self updateItemsWithAlpha:alpha];
+}
+
+#pragma mark - private methods
+
+- (void)updateItemsWithAlpha:(CGFloat)alpha {
+    
+    for (MFTransparentBarButtonItem *item in self.topItem.rightBarButtonItems) {
+        if ([item isKindOfClass:[MFTransparentBarButtonItem class]]) {
+            item.selected = alpha > 0.95;
+        }
+    }
+    for (MFTransparentBarButtonItem *item in self.topItem.leftBarButtonItems) {
+        if ([item isKindOfClass:[MFTransparentBarButtonItem class]]) {
+            item.selected = alpha > 0.95;
+        }
+    }
+    UIView *titleView = self.topItem.titleView;
+    titleView.hidden = alpha <= 0.95;
 }
 
 @end
