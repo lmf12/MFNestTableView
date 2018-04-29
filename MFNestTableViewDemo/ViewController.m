@@ -12,7 +12,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController () <MFNestTableViewDelegate, MFPageViewDataSource, MFPageViewDelegate, MFSegmentViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ViewController () <MFNestTableViewDelegate, MFNestTableViewDataSource, MFPageViewDataSource, MFPageViewDelegate, MFSegmentViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) MFNestTableView *nestTableView;
 @property (nonatomic, strong) UIView *headerView;
@@ -30,10 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.navigationBar.translucent = NO;
-    
+        
     [self initDataSource];
     [self initLayout];
 }
@@ -52,6 +49,8 @@
     }
     
     _viewList = [[NSMutableArray alloc] init];
+    
+    // 添加3个tableview
     for (int i = 0; i < pageDataCount.count; ++i) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
         tableView.delegate = self;
@@ -60,6 +59,25 @@
         tableView.tag = i;
         [_viewList addObject:tableView];
     }
+    
+    // 添加ScrollView
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    scrollView.backgroundColor = [UIColor whiteColor];
+    UIImage *image = [UIImage imageNamed:@"img1.jpg"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width * image.size.height / image.size.width);
+    scrollView.contentSize = imageView.frame.size;
+    scrollView.alwaysBounceVertical = YES;
+    [scrollView addSubview:imageView];
+    scrollView.delegate = self;
+    [_viewList addObject:scrollView];
+    
+    // 添加webview
+    UIWebView *webview = [[UIWebView alloc] init];
+    webview.backgroundColor = [UIColor whiteColor];
+    [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.lymanli.com/"]]];
+    webview.scrollView.delegate = self;
+    [_viewList addObject:webview];
 }
 
 - (void)initLayout {
@@ -68,60 +86,51 @@
     [self initSegmentView];
     [self initContentView];
     
-    _nestTableView = [[MFNestTableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - [self statusBarAndNavigationBarHeight])];
-    _nestTableView.tableHeaderView = _headerView;
+    _nestTableView = [[MFNestTableView alloc] initWithFrame:self.view.bounds];
+    _nestTableView.headerView = _headerView;
     _nestTableView.segmentView = _segmentView;
     _nestTableView.contentView = _contentView;
-    _nestTableView.nestDelegate = self;
+    _nestTableView.allowGestureEventPassViews = _viewList;
+    _nestTableView.delegate = self;
+    _nestTableView.dataSource = self;
     
     [self.view addSubview:_nestTableView];
 }
 
 - (void)initHeaderView {
     
-    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetHeight(self.view.bounds), 200)];
-    _headerView.backgroundColor = [UIColor orangeColor];
+    UIImage *image = [UIImage imageNamed:@"img2.jpg"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width * image.size.height / image.size.width);
+    
+    _headerView = imageView;
 }
 
 - (void)initSegmentView {
     
-    _segmentView = [[MFSegmentView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetHeight(self.view.bounds), 40)];
-    _segmentView.segmentDelegate = self;
-    _segmentView.itemWidth = 60;
+    _segmentView = [[MFSegmentView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 40)];
+    _segmentView.delegate = self;
+    _segmentView.itemWidth = 80;
     _segmentView.itemFont = [UIFont systemFontOfSize:15];
-    _segmentView.itemNormalColor = [UIColor greenColor];
-    _segmentView.itemSelectColor = [UIColor purpleColor];
-    _segmentView.bottomLineWidth = 40;
+    _segmentView.itemNormalColor = [UIColor colorWithRed:155.0 / 255 green:155.0 / 255 blue:155.0 / 255 alpha:1];
+    _segmentView.itemSelectColor = [UIColor colorWithRed:244.0 / 255 green:67.0 / 255 blue:54.0 / 255 alpha:1];
+    _segmentView.bottomLineWidth = 60;
     _segmentView.bottomLineHeight = 2;
-    _segmentView.itemList = @[@"综合", @"分类1", @"分类2", @"分类3", @"分类4", @"分类5", @"分类6", @"分类7", @"分类8", @"分类9"];
+    _segmentView.itemList = @[@"列表1", @"列表2", @"列表3", @"图片", @"网页"];
 }
 
 - (void)initContentView {
     
     _contentView = [[MFPageView alloc] initWithFrame:self.view.bounds];
-    _contentView.pageDataSource = self;
-    _contentView.pageDelegate = self;
-}
-
-- (CGFloat)statusBarAndNavigationBarHeight {
-    
-    return CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]) + CGRectGetHeight(self.navigationController.navigationBar.frame);
+    _contentView.delegate = self;
+    _contentView.dataSource = self;
 }
 
 #pragma mark - MFSegmentViewDelegate
 
 - (void)segmentView:(MFSegmentView *)segmentView didScrollToIndex:(NSUInteger)index {
     
-}
-
-- (void)segmentViewDidScroll:(MFSegmentView *)segmentView {
-    
-//    _nestTableView.scrollEnabled = NO;  // 当 SegmentView 左右滑动的时候，禁止 NestTableView 上下滑动
-}
-
-- (void)segmentViewDidEndScrolling:(MFSegmentView *)segmentView {
-    
-//    _nestTableView.scrollEnabled = YES;
+    [_contentView scrollToIndex:index];
 }
 
 #pragma mark - MFNestTableViewDelegate
@@ -145,16 +154,7 @@
 
 - (void)pageView:(MFPageView *)pageView didScrollToIndex:(NSUInteger)index {
     
-}
-
-- (void)pageViewDidScroll:(MFPageView *)pageView {
-    
-//    _nestTableView.scrollEnabled = NO;  // 当 PageView 左右滑动的时候，禁止 NestTableView 上下滑动
-}
-
-- (void)pageViewDidEndScrolling:(MFPageView *)pageView {
-    
-//    _nestTableView.scrollEnabled = YES;
+    [_segmentView scrollToIndex:index];
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
@@ -190,11 +190,41 @@
     if (!_canContentScroll) {
         scrollView.contentOffset = CGPointZero;
     } else if (scrollView.contentOffset.y <= 0) {
-        scrollView.contentOffset = CGPointZero;
         _nestTableView.canScroll = YES;
         _canContentScroll = NO;
     }
     scrollView.showsVerticalScrollIndicator = _canContentScroll;
+}
+
+#pragma mark - MFNestTableViewDelegate & MFNestTableViewDataSource
+
+- (void)nestTableViewContentCanScroll:(MFNestTableView *)nestTableView {
+    
+    self.canContentScroll = YES;
+}
+
+- (void)nestTableViewContainerCanScroll:(MFNestTableView *)nestTableView {
+ 
+    for (id view in self.viewList) {
+        UIScrollView *scrollView;
+        if ([view isKindOfClass:[UIScrollView class]]) {
+            scrollView = view;
+        } else if ([view isKindOfClass:[UIWebView class]]) {
+            scrollView = ((UIWebView *)view).scrollView;
+        }
+        if (scrollView) {
+            scrollView.contentOffset = CGPointZero;
+        }
+    }
+}
+
+- (CGFloat)nestTableViewContentInsetTop:(MFNestTableView *)nestTableView {
+    
+    if (IS_IPHONE_X) {
+        return 88;
+    } else {
+        return 64;
+    }
 }
 
 @end

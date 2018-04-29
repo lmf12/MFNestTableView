@@ -2,13 +2,13 @@
 //  MFSegmentViewCell.m
 //  MFNestTableViewDemo
 //
-//  Created by Lyman Li on 2018/4/6.
+//  Created by Lyman Li on 2018/4/29.
 //  Copyright © 2018年 Lyman Li. All rights reserved.
 //
 
-#define BOTTOM_LINE_DEFAULT_HEIGHT 2
-
 #import "MFSegmentViewCell.h"
+
+static NSInteger kMFSegmentViewCellBottomLineHeight = 2;
 
 @implementation MFSegmentViewCell
 
@@ -21,10 +21,18 @@
     return self;
 }
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style
-              reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    
+    self = [super initWithFrame:frame];
     if (self) {
         [self commonInit];
     }
@@ -37,25 +45,24 @@
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_titleLabel];
     
-    _bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - BOTTOM_LINE_DEFAULT_HEIGHT, 0, BOTTOM_LINE_DEFAULT_HEIGHT)];
+    _bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - kMFSegmentViewCellBottomLineHeight, 0, kMFSegmentViewCellBottomLineHeight)];
     _bottomLine.clipsToBounds = YES;
     _bottomLine.backgroundColor = [UIColor redColor];
     [self addSubview:_bottomLine];
+
 }
 
 - (void)layoutSubviews {
     
     [super layoutSubviews];
     
-    CGRect frame = self.frame;
-    frame.size.width = self.superview.bounds.size.width;
-    self.frame = frame;
     _titleLabel.frame = self.bounds;
     
     CGRect bottomLineFrame = _bottomLine.frame;
     bottomLineFrame.origin.x = (CGRectGetWidth(self.bounds) - CGRectGetWidth(bottomLineFrame)) / 2;
     bottomLineFrame.origin.y = CGRectGetHeight(self.bounds) - CGRectGetHeight(bottomLineFrame);
     _bottomLine.frame = bottomLineFrame;
+
 }
 
 

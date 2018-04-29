@@ -7,20 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E832F0F02095DF8300C56855 /* img1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E832F0EF2095DF8300C56855 /* img1.jpg */; };
+		E832F0F22095E28B00C56855 /* img2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E832F0F12095E28B00C56855 /* img2.jpg */; };
+		E837388620956B8300DA212F /* MFNestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E837388520956B8300DA212F /* MFNestTableView.m */; };
+		E837389720956D4800DA212F /* MFAllowGestureEventPassTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E837389620956D4800DA212F /* MFAllowGestureEventPassTableView.m */; };
+		E837389C2095863100DA212F /* MFPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E837389B2095863100DA212F /* MFPageView.m */; };
+		E837389F2095866C00DA212F /* MFSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E837389E2095866C00DA212F /* MFSegmentView.m */; };
+		E83738A52095CEAC00DA212F /* MFSegmentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E83738A42095CEAC00DA212F /* MFSegmentViewCell.m */; };
 		E8E625B920773712004FDF78 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625B820773712004FDF78 /* AppDelegate.m */; };
 		E8E625BC20773712004FDF78 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625BB20773712004FDF78 /* ViewController.m */; };
 		E8E625BF20773712004FDF78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8E625BD20773712004FDF78 /* Main.storyboard */; };
 		E8E625C120773712004FDF78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8E625C020773712004FDF78 /* Assets.xcassets */; };
 		E8E625C420773712004FDF78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8E625C220773712004FDF78 /* LaunchScreen.storyboard */; };
 		E8E625C720773712004FDF78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625C620773712004FDF78 /* main.m */; };
-		E8E625D02077380D004FDF78 /* MFNestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625CF2077380D004FDF78 /* MFNestTableView.m */; };
-		E8E625D4207750A5004FDF78 /* MFSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625D3207750A5004FDF78 /* MFSegmentView.m */; };
-		E8E625E220778AA5004FDF78 /* MFSegmentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625E120778AA5004FDF78 /* MFSegmentViewCell.m */; };
-		E8E625E62077BB21004FDF78 /* MFPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625E52077BB21004FDF78 /* MFPageView.m */; };
-		E8E625E92077C34A004FDF78 /* MFPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E625E82077C34A004FDF78 /* MFPageViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E832F0EF2095DF8300C56855 /* img1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = img1.jpg; sourceTree = "<group>"; };
+		E832F0F12095E28B00C56855 /* img2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = img2.jpg; sourceTree = "<group>"; };
+		E837388420956B8300DA212F /* MFNestTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFNestTableView.h; sourceTree = "<group>"; };
+		E837388520956B8300DA212F /* MFNestTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFNestTableView.m; sourceTree = "<group>"; };
+		E837389520956D4800DA212F /* MFAllowGestureEventPassTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFAllowGestureEventPassTableView.h; sourceTree = "<group>"; };
+		E837389620956D4800DA212F /* MFAllowGestureEventPassTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFAllowGestureEventPassTableView.m; sourceTree = "<group>"; };
+		E837389A2095863100DA212F /* MFPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFPageView.h; sourceTree = "<group>"; };
+		E837389B2095863100DA212F /* MFPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFPageView.m; sourceTree = "<group>"; };
+		E837389D2095866C00DA212F /* MFSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFSegmentView.h; sourceTree = "<group>"; };
+		E837389E2095866C00DA212F /* MFSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFSegmentView.m; sourceTree = "<group>"; };
+		E83738A32095CEAC00DA212F /* MFSegmentViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFSegmentViewCell.h; sourceTree = "<group>"; };
+		E83738A42095CEAC00DA212F /* MFSegmentViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFSegmentViewCell.m; sourceTree = "<group>"; };
 		E8E625B420773712004FDF78 /* MFNestTableViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MFNestTableViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E625B720773712004FDF78 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E8E625B820773712004FDF78 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -31,16 +45,6 @@
 		E8E625C320773712004FDF78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8E625C520773712004FDF78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8E625C620773712004FDF78 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E8E625CE2077380D004FDF78 /* MFNestTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFNestTableView.h; sourceTree = "<group>"; };
-		E8E625CF2077380D004FDF78 /* MFNestTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFNestTableView.m; sourceTree = "<group>"; };
-		E8E625D2207750A5004FDF78 /* MFSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFSegmentView.h; sourceTree = "<group>"; };
-		E8E625D3207750A5004FDF78 /* MFSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFSegmentView.m; sourceTree = "<group>"; };
-		E8E625E020778AA5004FDF78 /* MFSegmentViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFSegmentViewCell.h; sourceTree = "<group>"; };
-		E8E625E120778AA5004FDF78 /* MFSegmentViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFSegmentViewCell.m; sourceTree = "<group>"; };
-		E8E625E42077BB21004FDF78 /* MFPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFPageView.h; sourceTree = "<group>"; };
-		E8E625E52077BB21004FDF78 /* MFPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFPageView.m; sourceTree = "<group>"; };
-		E8E625E72077C34A004FDF78 /* MFPageViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFPageViewCell.h; sourceTree = "<group>"; };
-		E8E625E82077C34A004FDF78 /* MFPageViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFPageViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +58,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E832F0EE2095DF8300C56855 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				E832F0F12095E28B00C56855 /* img2.jpg */,
+				E832F0EF2095DF8300C56855 /* img1.jpg */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		E837388720956D0100DA212F /* MFSegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				E837389D2095866C00DA212F /* MFSegmentView.h */,
+				E837389E2095866C00DA212F /* MFSegmentView.m */,
+				E83738A32095CEAC00DA212F /* MFSegmentViewCell.h */,
+				E83738A42095CEAC00DA212F /* MFSegmentViewCell.m */,
+			);
+			path = MFSegmentView;
+			sourceTree = "<group>";
+		};
+		E837388C20956D0100DA212F /* MFPageView */ = {
+			isa = PBXGroup;
+			children = (
+				E837389A2095863100DA212F /* MFPageView.h */,
+				E837389B2095863100DA212F /* MFPageView.m */,
+			);
+			path = MFPageView;
+			sourceTree = "<group>";
+		};
 		E8E625AB20773712004FDF78 = {
 			isa = PBXGroup;
 			children = (
+				E832F0EE2095DF8300C56855 /* image */,
+				E837388C20956D0100DA212F /* MFPageView */,
+				E837388720956D0100DA212F /* MFSegmentView */,
 				E8E625CD207737DA004FDF78 /* MFNestTableView */,
 				E8E625B620773712004FDF78 /* MFNestTableViewDemo */,
 				E8E625B520773712004FDF78 /* Products */,
@@ -90,34 +126,12 @@
 		E8E625CD207737DA004FDF78 /* MFNestTableView */ = {
 			isa = PBXGroup;
 			children = (
-				E8E625D120775039004FDF78 /* MFSegmentView */,
-				E8E625E32077BAFE004FDF78 /* MFPageView */,
-				E8E625CE2077380D004FDF78 /* MFNestTableView.h */,
-				E8E625CF2077380D004FDF78 /* MFNestTableView.m */,
+				E837388420956B8300DA212F /* MFNestTableView.h */,
+				E837388520956B8300DA212F /* MFNestTableView.m */,
+				E837389520956D4800DA212F /* MFAllowGestureEventPassTableView.h */,
+				E837389620956D4800DA212F /* MFAllowGestureEventPassTableView.m */,
 			);
 			path = MFNestTableView;
-			sourceTree = "<group>";
-		};
-		E8E625D120775039004FDF78 /* MFSegmentView */ = {
-			isa = PBXGroup;
-			children = (
-				E8E625D2207750A5004FDF78 /* MFSegmentView.h */,
-				E8E625D3207750A5004FDF78 /* MFSegmentView.m */,
-				E8E625E020778AA5004FDF78 /* MFSegmentViewCell.h */,
-				E8E625E120778AA5004FDF78 /* MFSegmentViewCell.m */,
-			);
-			path = MFSegmentView;
-			sourceTree = "<group>";
-		};
-		E8E625E32077BAFE004FDF78 /* MFPageView */ = {
-			isa = PBXGroup;
-			children = (
-				E8E625E42077BB21004FDF78 /* MFPageView.h */,
-				E8E625E52077BB21004FDF78 /* MFPageView.m */,
-				E8E625E72077C34A004FDF78 /* MFPageViewCell.h */,
-				E8E625E82077C34A004FDF78 /* MFPageViewCell.m */,
-			);
-			path = MFPageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +193,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8E625C420773712004FDF78 /* LaunchScreen.storyboard in Resources */,
+				E832F0F22095E28B00C56855 /* img2.jpg in Resources */,
+				E832F0F02095DF8300C56855 /* img1.jpg in Resources */,
 				E8E625C120773712004FDF78 /* Assets.xcassets in Resources */,
 				E8E625BF20773712004FDF78 /* Main.storyboard in Resources */,
 			);
@@ -191,14 +207,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8E625D4207750A5004FDF78 /* MFSegmentView.m in Sources */,
-				E8E625D02077380D004FDF78 /* MFNestTableView.m in Sources */,
 				E8E625BC20773712004FDF78 /* ViewController.m in Sources */,
-				E8E625E62077BB21004FDF78 /* MFPageView.m in Sources */,
 				E8E625C720773712004FDF78 /* main.m in Sources */,
+				E837389F2095866C00DA212F /* MFSegmentView.m in Sources */,
+				E837389720956D4800DA212F /* MFAllowGestureEventPassTableView.m in Sources */,
+				E837388620956B8300DA212F /* MFNestTableView.m in Sources */,
+				E837389C2095863100DA212F /* MFPageView.m in Sources */,
 				E8E625B920773712004FDF78 /* AppDelegate.m in Sources */,
-				E8E625E92077C34A004FDF78 /* MFPageViewCell.m in Sources */,
-				E8E625E220778AA5004FDF78 /* MFSegmentViewCell.m in Sources */,
+				E83738A52095CEAC00DA212F /* MFSegmentViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

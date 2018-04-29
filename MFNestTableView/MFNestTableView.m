@@ -2,13 +2,18 @@
 //  MFNestTableView.m
 //  MFNestTableViewDemo
 //
-//  Created by Lyman Li on 2018/4/6.
+//  Created by Lyman Li on 2018/4/29.
 //  Copyright © 2018年 Lyman Li. All rights reserved.
 //
 
 #import "MFNestTableView.h"
+#import "MFAllowGestureEventPassTableView.h"
 
 @interface MFNestTableView () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
+
+@property (nonatomic, strong) MFAllowGestureEventPassTableView *tableView;
+
+@property (nonatomic, assign) BOOL isFooterViewHidden;
 
 @end
 
@@ -18,46 +23,207 @@
     
     self = [super initWithFrame:frame];
     if (self) {
-        [self commonInit];
+        [self commomInit];
     }
     return self;
+}
+
+- (void)layoutSubviews {
+    
+    [super layoutSubviews];
+    
+    [self resizeTableView];
 }
 
 #pragma mark - setter
 
 - (void)setSegmentView:(UIView *)segmentView {
     
+    if (_segmentView == segmentView) {
+        return;
+    }
     _segmentView = segmentView;
     
-    [self reloadData];
+    [self resizeSegmentView];
+    [_tableView reloadData];
 }
 
 - (void)setContentView:(UIView *)contentView {
     
-    contentView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - [self segmentViewHeight]);
+    if (_contentView == contentView) {
+        return;
+    }
     _contentView = contentView;
     
-    [self reloadData];
+    [self resizeContentHeight];
+    [_tableView reloadData];
+}
+
+- (void)setHeaderView:(UIView *)headerView {
+    
+    if (_headerView == headerView) {
+        return;
+    }
+    _headerView = headerView;
+    if (_tableView) {
+        _tableView.tableHeaderView = headerView;
+    }
+    
+    [self resizeContentHeight];
+    [_tableView reloadData];
+}
+
+- (void)setAllowGestureEventPassViews:(NSArray *)allowGestureEventPassViews {
+    
+    if (_tableView) {
+        [_tableView setAllowGestureEventPassViews:allowGestureEventPassViews];
+    }
+}
+
+- (void)setDataSource:(id<MFNestTableViewDataSource>)dataSource {
+    
+    if (_dataSource == dataSource) {
+        return;
+    }
+    _dataSource = dataSource;
+    
+    [self resizeContentHeight];
+    [_tableView reloadData];
+}
+
+- (void)setCanScroll:(BOOL)canScroll {
+    
+    if (_canScroll == canScroll) {
+        return;
+    }
+    _canScroll = canScroll;
+    
+    if (canScroll && self.delegate && [self.delegate respondsToSelector:@selector(nestTableViewContainerCanScroll:)]) {
+        [self.delegate nestTableViewContainerCanScroll:self];
+    }
+}
+
+#pragma mark - public methods
+
+- (CGFloat)heightForContainerCanScroll {
+    
+    if (_tableView && _tableView.tableHeaderView) {
+        return CGRectGetHeight(_tableView.tableHeaderView.frame) - [self contentInsetTop];
+    } else {
+        return 0;
+    }
+}
+
+- (void)nestTableViewDidScroll:(UIScrollView *)scrollView {
+}
+
+- (void)setFooterViewHidden:(BOOL)hidden {
+    
+    self.isFooterViewHidden = hidden;
+    [self resizeContentHeight];
+    
+    [_tableView reloadData];
+}
+
+- (void)setHeaderViewHeight:(CGFloat)height {
+    
+    if (!_tableView || !_tableView.tableHeaderView) {
+        return;
+    }
+    UIView *headerView = _tableView.tableHeaderView;
+    CGRect frame = headerView.frame;
+    frame.size.height = height;
+    headerView.frame = frame;
+    _tableView.tableHeaderView = headerView;
+    
+    [self resizeContentHeight];
+    [_tableView reloadData];
+}
+
+- (void)setSegmentViewHeight:(CGFloat)height {
+    
+    if (!_segmentView) {
+        return;
+    }
+    CGRect frame = _segmentView.frame;
+    frame.size.height = height;
+    _segmentView.frame = frame;
+    
+    [self resizeContentHeight];
+    [_tableView reloadData];
 }
 
 #pragma mark - private methods
 
-- (void)commonInit {
+- (void)commomInit {
     
-    self.delegate = self;
-    self.dataSource = self;
+    MFAllowGestureEventPassTableView *tableView = [[MFAllowGestureEventPassTableView alloc] initWithFrame:self.bounds];
+    self.tableView = tableView;
+    [self addSubview:_tableView];
+    
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.canScroll = YES;
-    self.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.isFooterViewHidden = YES;
+}
+
+- (CGFloat)contentInsetTop {
     
-    if (@available(iOS 11.0, *)) {
-        self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(nestTableViewContentInsetTop:)]) {
+        return [self.dataSource nestTableViewContentInsetTop:self];
+    }
+    
+    return 0;
+}
+
+- (CGFloat)contentInsetBottom {
+    
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(nestTableViewContentInsetBottom:)]) {
+        return [self.dataSource nestTableViewContentInsetBottom:self];
+    }
+    
+    if (IS_IPHONE_X) {
+        return 34;
+    } else {
+        return 0;
     }
 }
 
 - (CGFloat)segmentViewHeight {
     
-    return _segmentView ? CGRectGetHeight(_segmentView.bounds) : 0.5f;
+    return _segmentView ? CGRectGetHeight(_segmentView.bounds) : 0;
 }
+
+- (CGFloat)footerViewHeight {
+    
+    return (_footerView && !_isFooterViewHidden) ? CGRectGetHeight(_footerView.bounds) : 0;
+}
+
+- (void)resizeContentHeight {
+    
+    if (!_contentView) {
+        return;
+    }
+    
+    CGFloat contentHeight = CGRectGetHeight(self.bounds) - [self segmentViewHeight] - [self contentInsetTop] - [self contentInsetBottom] - [self footerViewHeight];
+    _contentView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), contentHeight);
+}
+
+- (void)resizeTableView {
+    
+    if (_tableView) {
+        _tableView.frame = self.bounds;
+    }
+}
+
+- (void)resizeSegmentView {
+    
+    if (_segmentView) {
+        _segmentView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(_segmentView.frame));
+    }
+}
+
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
 
@@ -76,16 +242,20 @@
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     if (_contentView) {
         UIView *view = cell.contentView;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [view addSubview:_contentView];
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return CGRectGetHeight(self.bounds) - [self segmentViewHeight];
+    if (!_contentView) {
+        return 0;
+    }
+    
+    return CGRectGetHeight(_contentView.bounds);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -102,29 +272,39 @@
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    
+    if (_footerView && !_isFooterViewHidden) {
+        return _footerView;
+    } else {
+        return [[UIView alloc] init];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    
+    return [self footerViewHeight];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    CGFloat contentOffset = [self rectForSection:0].origin.y;
+    CGFloat contentOffset = [self heightForContainerCanScroll];
     
     if (!_canScroll) {
         scrollView.contentOffset = CGPointMake(0, contentOffset);
     } else if (scrollView.contentOffset.y >= contentOffset) {
         scrollView.contentOffset = CGPointMake(0, contentOffset);
-        _canScroll = NO;
+        self.canScroll = NO;
         
-        // 通知内容视图可以滚动
-        if (self.nestDelegate && [self.nestDelegate respondsToSelector:@selector(nestTableViewContentWillEnableScroll:)]) {
-            [self.nestDelegate nestTableViewContentWillEnableScroll:self];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(nestTableViewContentCanScroll:)]) {
+            [self.delegate nestTableViewContentCanScroll:self];
         }
     }
     scrollView.showsVerticalScrollIndicator = _canScroll;
-}
-
-#pragma mark - UIGestureRecognizerDelegate
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     
-    return YES;
+    if ([self respondsToSelector:@selector(nestTableViewDidScroll:)]) {
+        [self nestTableViewDidScroll:_tableView];
+    }
 }
 
 @end

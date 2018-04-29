@@ -2,7 +2,7 @@
 //  MFPageView.h
 //  MFNestTableViewDemo
 //
-//  Created by Lyman Li on 2018/4/6.
+//  Created by Lyman Li on 2018/4/29.
 //  Copyright © 2018年 Lyman Li. All rights reserved.
 //
 
@@ -20,14 +20,14 @@
 @protocol MFPageViewDelegate <NSObject>
 
 - (void)pageView:(MFPageView *)pageView didScrollToIndex:(NSUInteger)index;
-- (void)pageViewDidScroll:(MFPageView *)pageView;
-- (void)pageViewDidEndScrolling:(MFPageView *)pageView;
 
 @end
 
-@interface MFPageView : UITableView
+@interface MFPageView : UIView
 
-@property (nonatomic, assign) id<MFPageViewDelegate> pageDelegate;
-@property (nonatomic, assign) id<MFPageViewDataSource> pageDataSource;
+@property (nonatomic, weak) id<MFPageViewDataSource> dataSource;
+@property (nonatomic, weak) id<MFPageViewDelegate> delegate;
+
+- (void)scrollToIndex:(NSUInteger)index;
 
 @end
