@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E832F0F02095DF8300C56855 /* img1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E832F0EF2095DF8300C56855 /* img1.jpg */; };
 		E832F0F22095E28B00C56855 /* img2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E832F0F12095E28B00C56855 /* img2.jpg */; };
+		E832F0F920960F0900C56855 /* MFTransparentNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E832F0F820960F0900C56855 /* MFTransparentNavigationBar.m */; };
 		E837388620956B8300DA212F /* MFNestTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E837388520956B8300DA212F /* MFNestTableView.m */; };
 		E837389720956D4800DA212F /* MFAllowGestureEventPassTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E837389620956D4800DA212F /* MFAllowGestureEventPassTableView.m */; };
 		E837389C2095863100DA212F /* MFPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E837389B2095863100DA212F /* MFPageView.m */; };
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		E832F0EF2095DF8300C56855 /* img1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = img1.jpg; sourceTree = "<group>"; };
 		E832F0F12095E28B00C56855 /* img2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = img2.jpg; sourceTree = "<group>"; };
+		E832F0F720960F0900C56855 /* MFTransparentNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFTransparentNavigationBar.h; sourceTree = "<group>"; };
+		E832F0F820960F0900C56855 /* MFTransparentNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFTransparentNavigationBar.m; sourceTree = "<group>"; };
 		E837388420956B8300DA212F /* MFNestTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFNestTableView.h; sourceTree = "<group>"; };
 		E837388520956B8300DA212F /* MFNestTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFNestTableView.m; sourceTree = "<group>"; };
 		E837389520956D4800DA212F /* MFAllowGestureEventPassTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFAllowGestureEventPassTableView.h; sourceTree = "<group>"; };
@@ -67,6 +70,15 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		E832F0F620960ED600C56855 /* MFTransparentNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				E832F0F720960F0900C56855 /* MFTransparentNavigationBar.h */,
+				E832F0F820960F0900C56855 /* MFTransparentNavigationBar.m */,
+			);
+			path = MFTransparentNavigationBar;
+			sourceTree = SOURCE_ROOT;
+		};
 		E837388720956D0100DA212F /* MFSegmentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +106,7 @@
 				E837388C20956D0100DA212F /* MFPageView */,
 				E837388720956D0100DA212F /* MFSegmentView */,
 				E8E625CD207737DA004FDF78 /* MFNestTableView */,
+				E832F0F620960ED600C56855 /* MFTransparentNavigationBar */,
 				E8E625B620773712004FDF78 /* MFNestTableViewDemo */,
 				E8E625B520773712004FDF78 /* Products */,
 			);
@@ -212,6 +225,7 @@
 				E837389F2095866C00DA212F /* MFSegmentView.m in Sources */,
 				E837389720956D4800DA212F /* MFAllowGestureEventPassTableView.m in Sources */,
 				E837388620956B8300DA212F /* MFNestTableView.m in Sources */,
+				E832F0F920960F0900C56855 /* MFTransparentNavigationBar.m in Sources */,
 				E837389C2095863100DA212F /* MFPageView.m in Sources */,
 				E8E625B920773712004FDF78 /* AppDelegate.m in Sources */,
 				E83738A52095CEAC00DA212F /* MFSegmentViewCell.m in Sources */,

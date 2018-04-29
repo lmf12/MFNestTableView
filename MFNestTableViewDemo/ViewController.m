@@ -9,6 +9,7 @@
 #import "MFNestTableView.h"
 #import "MFPageView.h"
 #import "MFSegmentView.h"
+#import "MFTransparentNavigationBar.h"
 
 #import "ViewController.h"
 
@@ -99,11 +100,18 @@
 
 - (void)initHeaderView {
     
+    // 因为将navigationBar设置了透明，所以这里设置将header的高度减少navigationBar的高度，
+    // 并将header的subview向上偏移，遮挡navigationBar透明后的空白
+    CGFloat offsetTop = [self nestTableViewContentInsetTop:_nestTableView];
+    
     UIImage *image = [UIImage imageNamed:@"img2.jpg"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width * image.size.height / image.size.width);
+    imageView.frame = CGRectMake(0, -offsetTop, CGRectGetWidth(self.view.frame), self.view.frame.size.width * image.size.height / image.size.width);
     
-    _headerView = imageView;
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(imageView.frame), CGRectGetHeight(imageView.frame) - offsetTop)];
+    [header addSubview:imageView];
+    
+    _headerView = header;
 }
 
 - (void)initSegmentView {
@@ -131,13 +139,6 @@
 - (void)segmentView:(MFSegmentView *)segmentView didScrollToIndex:(NSUInteger)index {
     
     [_contentView scrollToIndex:index];
-}
-
-#pragma mark - MFNestTableViewDelegate
-
-- (void)nestTableViewContentWillEnableScroll:(MFNestTableView *)nestTableView {
-    
-    _canContentScroll = YES;
 }
 
 #pragma mark - MFPageViewDataSource & MFPageViewDelegate
@@ -214,6 +215,18 @@
         }
         if (scrollView) {
             scrollView.contentOffset = CGPointZero;
+        }
+    }
+}
+
+- (void)nestTableViewDidScroll:(UIScrollView *)scrollView {
+        
+    if (_headerView) {
+        CGFloat offset = scrollView.contentOffset.y;
+        CGFloat canScrollHeight = [_nestTableView heightForContainerCanScroll];
+        MFTransparentNavigationBar *bar = (MFTransparentNavigationBar *)self.navigationController.navigationBar;
+        if ([bar isKindOfClass:[MFTransparentNavigationBar class]]) {
+            [bar setBackgroundAlpha:offset / canScrollHeight];
         }
     }
 }

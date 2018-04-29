@@ -114,9 +114,6 @@
     }
 }
 
-- (void)nestTableViewDidScroll:(UIScrollView *)scrollView {
-}
-
 - (void)setFooterViewHidden:(BOOL)hidden {
     
     self.isFooterViewHidden = hidden;
@@ -302,8 +299,8 @@
     }
     scrollView.showsVerticalScrollIndicator = _canScroll;
     
-    if ([self respondsToSelector:@selector(nestTableViewDidScroll:)]) {
-        [self nestTableViewDidScroll:_tableView];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(nestTableViewDidScroll:)]) {
+        [self.delegate nestTableViewDidScroll:_tableView];
     }
 }
 

@@ -17,6 +17,7 @@
 @required
 - (void)nestTableViewContentCanScroll:(MFNestTableView *)nestTableView;
 - (void)nestTableViewContainerCanScroll:(MFNestTableView *)nestTableView;
+- (void)nestTableViewDidScroll:(UIScrollView *)scrollView;
 
 @end
 

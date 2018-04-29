@@ -32,7 +32,7 @@
         <scene sceneID="gE5-CI-jMw">
             <objects>
                 <navigationController id="ShB-Jd-qoK" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lW3-8V-1dn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lW3-8V-1dn" customClass="MFTransparentNavigationBar">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
