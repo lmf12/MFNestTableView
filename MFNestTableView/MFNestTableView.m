@@ -110,6 +110,7 @@
     _canScroll = canScroll;
     
     if (canScroll && self.delegate && [self.delegate respondsToSelector:@selector(nestTableViewContainerCanScroll:)]) {
+         // 通知delegate，容器开始可以滚动
         [self.delegate nestTableViewContainerCanScroll:self];
     }
 }
@@ -142,7 +143,7 @@
     CGRect frame = headerView.frame;
     frame.size.height = height;
     headerView.frame = frame;
-    _tableView.tableHeaderView = headerView;
+    _tableView.tableHeaderView = headerView;  // 这里要将headerView重新赋值才能生效
     
     [self resizeContentHeight];
     [_tableView reloadData];
@@ -177,6 +178,7 @@
 
 - (CGFloat)contentInsetTop {
     
+    // 如果dataSource实现了这个方法，则返回dataSource重写的返回值，否则返回默认值
     if (self.dataSource && [self.dataSource respondsToSelector:@selector(nestTableViewContentInsetTop:)]) {
         return [self.dataSource nestTableViewContentInsetTop:self];
     }
@@ -186,6 +188,7 @@
 
 - (CGFloat)contentInsetBottom {
     
+    // 如果dataSource实现了这个方法，则返回dataSource重写的返回值，否则返回默认值
     if (self.dataSource && [self.dataSource respondsToSelector:@selector(nestTableViewContentInsetBottom:)]) {
         return [self.dataSource nestTableViewContentInsetBottom:self];
     }
@@ -298,11 +301,13 @@
     CGFloat contentOffset = [self heightForContainerCanScroll];
     
     if (!_canScroll) {
+        // 这里通过固定contentOffset的值，来实现不滚动
         scrollView.contentOffset = CGPointMake(0, contentOffset);
     } else if (scrollView.contentOffset.y >= contentOffset) {
         scrollView.contentOffset = CGPointMake(0, contentOffset);
         self.canScroll = NO;
         
+        // 通知delegate内容开始可以滚动
         if (self.delegate && [self.delegate respondsToSelector:@selector(nestTableViewContentCanScroll:)]) {
             [self.delegate nestTableViewContentCanScroll:self];
         }

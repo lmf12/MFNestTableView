@@ -36,6 +36,7 @@ static NSString * const kMFSegmentViewReuseIdentifier = @"MFSegmentViewReuseIden
     
     [super layoutSubviews];
     
+    // 调整所有item的尺寸，保证item高度和segmentView高度相等
     _collectionView.frame = [self bounds];
     _collectionViewLayout.itemSize = CGSizeMake(_itemWidth, CGRectGetHeight(self.frame));
     

@@ -71,16 +71,16 @@
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     imageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width * image.size.height / image.size.width);
     scrollView.contentSize = imageView.frame.size;
-    scrollView.alwaysBounceVertical = YES;
+    scrollView.alwaysBounceVertical = YES; // 设置为YES，当contentSize小于frame.size也可以滚动
     [scrollView addSubview:imageView];
-    scrollView.delegate = self;
+    scrollView.delegate = self;  // 主要是为了在 scrollViewDidScroll: 中处理是否可以滚动
     [_viewList addObject:scrollView];
     
     // 添加webview
     UIWebView *webview = [[UIWebView alloc] init];
     webview.backgroundColor = [UIColor whiteColor];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.lymanli.com/"]]];
-    webview.scrollView.delegate = self;
+    webview.scrollView.delegate = self;  // 主要是为了在 scrollViewDidScroll: 中处理是否可以滚动
     [_viewList addObject:webview];
 }
 
@@ -242,13 +242,16 @@
     return 50;
 }
 
+// 3个tableView，scrollView，webView滑动时都会响应这个方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     if (!_canContentScroll) {
+        // 这里通过固定contentOffset，来实现不滚动
         scrollView.contentOffset = CGPointZero;
     } else if (scrollView.contentOffset.y <= 0) {
-        _nestTableView.canScroll = YES;
         _canContentScroll = NO;
+        // 通知容器可以开始滚动
+        _nestTableView.canScroll = YES;
     }
     scrollView.showsVerticalScrollIndicator = _canContentScroll;
 }
@@ -262,6 +265,7 @@
 
 - (void)nestTableViewContainerCanScroll:(MFNestTableView *)nestTableView {
  
+    // 当容器开始可以滚动时，将所有内容设置回到顶部
     for (id view in self.viewList) {
         UIScrollView *scrollView;
         if ([view isKindOfClass:[UIScrollView class]]) {
@@ -276,7 +280,8 @@
 }
 
 - (void)nestTableViewDidScroll:(UIScrollView *)scrollView {
-        
+    
+    // 监听容器的滚动，来设置NavigationBar的透明度
     if (_headerView) {
         CGFloat offset = scrollView.contentOffset.y;
         CGFloat canScrollHeight = [_nestTableView heightForContainerCanScroll];
@@ -289,6 +294,7 @@
 
 - (CGFloat)nestTableViewContentInsetTop:(MFNestTableView *)nestTableView {
     
+    // 因为这里navigationBar.translucent == YES，所以实现这个方法，返回下面的值
     if (IS_IPHONE_X) {
         return 88;
     } else {

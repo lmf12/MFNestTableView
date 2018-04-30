@@ -32,6 +32,7 @@ static NSString * const kMFPageViewReuseIdentifier = @"MFPageViewReuseIdentifier
     
     [super layoutSubviews];
     
+    // 调整所有item的尺寸，保证item高度和pageView高度相等
     _collectionView.frame = [self bounds];
     _collectionViewLayout.itemSize = CGSizeMake(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     
