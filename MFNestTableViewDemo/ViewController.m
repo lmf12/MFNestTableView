@@ -176,6 +176,7 @@
     UILabel *titleView = [[UILabel alloc] init];
     titleView.text = @"Steam 夏日特卖";
     titleView.font = [UIFont boldSystemFontOfSize:14];
+    [titleView sizeToFit];
     titleView.hidden = YES;
     self.navigationItem.titleView = titleView;
 }

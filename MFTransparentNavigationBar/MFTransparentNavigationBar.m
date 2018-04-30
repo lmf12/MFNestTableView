@@ -64,12 +64,12 @@
     alpha = alpha < 0 ? 0 : alpha;
     
     if (!_bgView) {
-        CGFloat navigationBarHeight = CGRectGetHeight(self.bounds);
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), navigationBarHeight)];
+        UIView *backgroundView = [[self subviews] firstObject];
+        UIView *view = [[UIView alloc] initWithFrame:backgroundView.bounds];
         self.bgView = view;view.backgroundColor = [UIColor redColor];
         self.bgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
-        [[[self subviews] firstObject] insertSubview:_bgView atIndex:0];
+        [backgroundView insertSubview:_bgView atIndex:0];
     }
     
     _bgView.backgroundColor = [UIColor colorWithWhite:1 alpha:alpha];
