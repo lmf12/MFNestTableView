@@ -2,7 +2,7 @@
 
 这是一种多级 ScrollView 互相嵌套的实现方案，具体实现的效果看下面。
 
-![](https://lymanli-1258009115.cos.ap-guangzhou.myqcloud.com/image/github/MFNestTableView/image1.gif)
+![](https://github.com/lmf12/ImageHost/blob/master/MFNestTableView/image1.gif)
 
 ## 适用范围
 
@@ -24,7 +24,7 @@
 
 首先来参照下面的图片，看看每个控件对应的是哪个部分。
 
-![](https://lymanli-1258009115.cos.ap-guangzhou.myqcloud.com/image/github/MFNestTableView/image2.jpg)
+![](https://github.com/lmf12/ImageHost/blob/master/MFNestTableView/image2.jpg)
 
 ## 如何使用
 
